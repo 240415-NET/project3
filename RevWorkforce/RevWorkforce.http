@@ -1,0 +1,6 @@
+@RevWorkforce_HostAddress = http://localhost:5293
+
+GET {{RevWorkforce_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
