@@ -1,4 +1,23 @@
+using Microsoft.EntityFrameworkCore;
+using RevWorkforce.Models;
+using RevWorkforce.Controllers;
+using RevWorkforce.Services;
+using RevWorkforce.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var myBadCorsPolicy = "_myBadCorsPolicy";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: myBadCorsPolicy,
+    policy =>
+    {
+        policy.AllowAnyOrigin();
+        policy.AllowAnyMethod();
+        policy.AllowAnyHeader();
+    });
+});
 
 // Add services to the container.
 
@@ -17,6 +36,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(myBadCorsPolicy);
 
 app.UseAuthorization();
 
